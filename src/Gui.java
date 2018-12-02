@@ -68,14 +68,21 @@ public class Gui extends JFrame{
 	private void setupMenu() {
 		menuBar = new JMenuBar();
 		file = new JMenu("File");
+		JMenuItem saveQuery = new JMenuItem("SaveQR");
+		JMenuItem loadQuery = new JMenuItem("LoadQR");
 		options = new JMenu("Options");
+		JMenuItem sources = new JMenuItem("Sources");
 		help = new JMenu("Help");
 		JMenuItem index = new JMenuItem("Index");
 		JMenuItem about = new JMenuItem("About");
 		
 		about.addActionListener((event) -> JOptionPane.showMessageDialog(null, "Made by Group 3"));
+		file.add(saveQuery);
+		file.add(loadQuery);
 		help.add(index);
 		help.add(about);
+		options.add(sources);
+		
 		menuBar.add(file);
 		menuBar.add(options);
 		menuBar.add(help);
