@@ -1,4 +1,3 @@
-
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -21,9 +20,12 @@ public class Gui extends JFrame{
 	Container contentPane;
 	private JPanel mainContent;
 	
+	JTabbedPane tabbedPane;
+	public LoadTab loadTab;
+	public SearchTab searchTab;
+	
 	public static void main(String[] args) {
 		JFrame gui = new Gui();
-
 	}
 	
 	public Gui()
@@ -32,30 +34,25 @@ public class Gui extends JFrame{
 		contentPane = getContentPane();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane.setLayout(new BorderLayout());
-		this.setSize(600, 400);
+		this.setSize(650, 400);
 		
-		setIcon();
+		//setIcon();
 		setupMenu();			
-		
-		mainContent = new JPanel();
-		getContentPane().add(mainContent, BorderLayout.CENTER);
-		mainContent.setLayout(new BorderLayout(0, 0));
-		
-		JPanel buttonPanel = new JPanel();
-		mainContent.add(buttonPanel, BorderLayout.NORTH);
-		buttonPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
-		
-		JButton searchBtn = new JButton("Search Documents");
-		buttonPanel.add(searchBtn);
-		
-		JButton loadBtn = new JButton("Load Documents");
-		buttonPanel.add(loadBtn);
-		
-		JButton summBtn = new JButton("Summarize Documents");
-		buttonPanel.add(summBtn);
+		// create a JTabbedPane object
+	    tabbedPane = new JTabbedPane();
+	    
+	    searchTab = new SearchTab();
+	    loadTab = new LoadTab();
+	    
+		// add each tab object to JTabbedPane
+	    tabbedPane.addTab("Search for Documents", searchTab);
+	    tabbedPane.addTab("Load Documents", loadTab);
+	    //tabbedPane.addTab("Summarize Documents");
+
+	    getContentPane().add(tabbedPane);
 		this.setVisible(true);
 	}
-	
+	/*
 	private void setIcon() {
 		try {
 			icon = new ImageIcon(ImageIO.read(new File("assets/logo.png")));
@@ -65,7 +62,7 @@ public class Gui extends JFrame{
 		
 		this.setIconImage(icon.getImage());
 	}
-	
+	*/
 	private void setupMenu() {
 		menuBar = new JMenuBar();
 		file = new JMenu("File");
